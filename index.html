@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>点亮蓝之青</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+
+body{font-size:12px; padding-top:32px;background-color: #222222;}
+p{
+  text-align:center;
+  font-size:12em;
+  margin:20px 0 20px 0; 
+}
+@font-face {
+  font-family: 'Iceland';
+  font-style: normal;
+  font-weight: 600;
+ /* src: local('Iceland'), local('Iceland-Regular'), url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff) format('woff');*/
+}
+
+
+
+a{
+  text-decoration:none; 
+
+}
+
+
+@-webkit-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px  #fff,
+               0 0 30px  #fff,
+               0 0 40px  #228DFF,
+               0 0 70px  #228DFF,
+               0 0 80px  #228DFF,
+               0 0 100px #228DFF,
+               0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #228DFF,
+               0 0 35px #228DFF,
+               0 0 40px #228DFF,
+               0 0 50px #228DFF,
+               0 0 75px #228DFF;
+  }
+  }
+  
+  
+  @-moz-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px  #fff,
+               0 0 30px  #fff,
+               0 0 40px  #228DFF,
+               0 0 70px  #228DFF,
+               0 0 80px  #228DFF,
+               0 0 100px #228DFF,
+               0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #228DFF,
+               0 0 35px #228DFF,
+               0 0 40px #228DFF,
+               0 0 50px #228DFF,
+               0 0 75px #228DFF;
+  }
+  }
+  
+
+
+div{width:auto; text-align:center; margin:0px auto; height:180px;}
+
+.a0{
+  font-size:1.5em;
+  color:#228DFF;
+  font-family:Iceland;
+}
+.a1{
+ font-size:1.5em;
+  color:#228DFF;
+  font-family:Iceland;
+  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 1.5s ease-in-out infinite alternate;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+}
+</style>
+<script type="text/javascript"  src="js/jquery-1.8.2.min.js"></script> 
+<script>
+function get1()
+{
+ document.getElementById("div1").className="div a1";
+}
+function get2()
+{
+ document.getElementById("div1").className="div c2";
+}
+//setTimeout(get1,3000);
+
+function immediately(){
+var element = document.getElementById("mytext");
+if("\v"=="v") {
+element.onpropertychange = webChange;
+}else{
+element.addEventListener("input",webChange,false);
+}
+function webChange(){
+var codestr;
+codestr=element.value;
+alert(codestr);
+
+switch(element.value)
+{
+case '1000':
+  document.getElementById("div1").className="div a1";
+  break;
+case '1100':
+  document.getElementById("div2").className="div a1";
+  break;
+  case '1110':
+  document.getElementById("div3").className="div a1";
+  break;
+  case '1111':
+  document.getElementById("div0").className="div a1";
+  break;
+default:
+ alert("Erro");
+};
+
+}
+}
+</script>
+
+</head>
+<body>
+<div style="display:none"><input type="button" value="点亮" onClick="get1()" style="display:none;" /> 
+&nbsp; <input type="button" name="button" id="button" value="重置" onClick="get2()" style="display:none;"/></div>
+<input id="bu" type="button" value="click" style="display:none;">
+<script src="js/index.js"></script>
+<input type="text" name="textfield" id="mytext"  style="display:none;"/>
+
+<script type="text/javascript">
+$(document).ready(function(){
+ //$("#bu").click();
+ //CountDown();
+ setInterval("CountDown()", 100);
+}
+ 
+  //  isinerval = setInterval("CountDown()", 1000)
+);
+
+
+
+
+$("#bu").click(function(){
+var data;
+//jQuery的getJSON()方法开始
+//getJSON不仅可以加载正宗的.json文件，也可以加载.php,.js文件，只要返回的是json数据即可
+//对于.json文件的写法，如果是多个json数据得用[]括起来
+$.getJSON('1.json',data,function(data){ 
+$("#bbs").empty(); 
+//jQuery的each方法操作便利json数据开始
+//entryindex返回每次each的索引 1,2,3,4,...,entry返回object
+$.each(data,function(entryindex,entry){
+var htmlstr = '';
+//htmlstr+='<li>'+entry.l+'</li>';
+//htmlstr+='<li>'+entry.z+'</li>';
+//htmlstr+='<li>'+entry.q+'</li>'; 
+//htmlstr+='<li>'+entry.s+'</li>'; 
+//htmlstr+='</ul>';
+htmlstr=entry.l+entry.z+entry.q+entry.s;
+
+if (entry.l==1){
+  document.getElementById("div1").className="div a1";
+}else
+{
+ document.getElementById("div1").className="div a0";
+}
+if (entry.z==1){
+  document.getElementById("div2").className="div a1";
+}else
+{
+ document.getElementById("div2").className="div a0";
+}
+if (entry.q==1){
+  document.getElementById("div3").className="div a1";
+}else
+{
+ document.getElementById("div3").className="div a0";
+}
+if (entry.s==1){
+  document.getElementById("div0").className="div a1";
+}else
+{
+ document.getElementById("div0").className="div a0";
+}
+
+//将转化的json数据添加到bbs div里面
+//$("#bbs").append(htmlstr);
+// document.getElementById("div1").className="div a0";
+// document.getElementById("div2").className="div a0";
+// document.getElementById("div3").className="div a0";
+// document.getElementById("div0").className="div a0";
+//$("#mytext").val(htmlstr);
+//
+//switch(htmlstr)
+//{
+//case '1000':
+//  document.getElementById("div1").className="div a1";
+//  break;
+//case '0100':
+//  document.getElementById("div2").className="div a1";
+//  break;
+//case '0010':
+//  document.getElementById("div3").className="div a1";
+//  break;
+//case '0001':
+//  document.getElementById("div0").className="div a1";
+//  break;
+//case '1010':
+//  document.getElementById("div1").className="div a1";
+//  document.getElementById("div3").className="div a1";
+//  break;
+//case '1000':
+//  document.getElementById("div1").className="div a1";
+//  document.getElementById("div2").className="div a1";
+//  break;
+//case '1100':
+//  document.getElementById("div1").className="div a1";
+//  document.getElementById("div2").className="div a1";
+//  break;
+//  
+//  
+//case '1110':
+//  document.getElementById("div1").className="div a1";
+//  document.getElementById("div2").className="div a1";
+//  document.getElementById("div3").className="div a1";
+//  break;
+//case '1111':
+//  document.getElementById("div1").className="div a1";
+//  document.getElementById("div2").className="div a1";
+//  document.getElementById("div3").className="div a1";
+//  document.getElementById("div0").className="div a1";
+//  break;
+//default:
+// //alert("Erro");
+// document.getElementById("div1").className="div a0";
+// document.getElementById("div2").className="div a0";
+// document.getElementById("div3").className="div a0";
+// document.getElementById("div0").className="div a0";
+//}
+//
+  })
+//jQuery的each方法操作便利json数据结束 
+})
+//jQuery的getJSON()方法结束 
+})
+
+    function CountDown() { 
+				 $("#bu").click();    
+            }
+</script>
+<div id="container" >
+<table height="301" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <div  id="div1" >
+        <p ><a  href="#"> 蓝 </a></p>
+      </div>
+  </td>
+
+    <td><div  id="div2" >
+        <p ><a  href="#"> 之 </a></p>
+      </div>
+     </td>
+
+    <td> <div  id="div3" >
+        <p ><a  href="#"> 青 </a></p>
+      </div>
+     </td>
+  </tr>
+    <tr height="30px"><td colspan="3">  
+</td></tr>
+  <tr><td colspan="3"> <div  id="div0" >
+        <p ><a  href="#"> LZQ Studio </a></p>
+      </div></td></tr>
+</table>
+</div>
+</body>
+
+</html>
